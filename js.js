@@ -1,35 +1,34 @@
-function getComputerChoice() {
-  const PCchoice = ["Rock", "Paper", "Scissor"];
-  const random = Math.floor(Math.random() * PCchoice.length);
-  return PCchoice[random];
-}
-console.log(getComputerChoice());
 
-function userInput() {
-  let userChoice = prompt("Choose Rock, Paper or Scissor");
-  return userChoice;
-}
-// console.log(userInput());
+
+let userChoice = prompt("Choose Rock, Paper or Scissor");
+console.log(userChoice)
+
+let result = game(userChoice, getComputerChoice());
+console.log(result);
 
 function game(userSelection, computerSelection) {
-  if (userSelection == computerSelection) {
+  if (userSelection === computerSelection) {
     return "Draw";
-  } else if (
-    (userSelection == "Rock" && computerSelection == "Scissor") ||
-    (userSelection == "Paper" && computerSelection == "Rock") ||
-    (userSelection == "Scissor" && computerSelection == "Paper")
+  } else if ( //logic for winner
+    (userSelection === "Rock" && computerSelection === "Scissor") ||
+    (userSelection === "Paper" && computerSelection === "Rock") ||
+    (userSelection === "Scissor" && computerSelection === "Paper")
   ) {
     return "Winner";
-  } else if (
-    (userSelection == "Rock" && computerSelection == "Paper") ||
-    (userSelection == "Paper" && computerSelection == "Scissor") ||
-    (userSelection == "Scissor" && computerSelection == "Rock")
+  } else if ( //logic for losers
+    (userSelection === "Rock" && computerSelection === "Paper") ||
+    (userSelection === "Paper" && computerSelection === "Scissor") ||
+    (userSelection === "Scissor" && computerSelection === "Rock")
   ) {
     return "Loser";
-  } else {
+  } else { //for any invalid string submitted by user
     return "Not a valid input";
   }
 }
 
-let result = game(userInput(), getComputerChoice());
-console.log(result);
+
+function getComputerChoice() {
+  const PCchoice = ["Rock", "Paper", "Scissor"];
+  const random = Math.floor(Math.random() * PCchoice.length);
+  return PCchoice[random];
+} //takes random number from Computer
